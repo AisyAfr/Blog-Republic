@@ -20,27 +20,25 @@
                 @endif
     <div class="col-md-4 mx-auto">
         <div class="card mt-5 mb-5 bg-info-subtle">
-  <h5 class="card-header text-center">Login</h5>
+  <h5 class="card-header text-center">Forgot Password?</h5>
         <div class="card-body">
-            <form method="POSt" action="{{url('login')}}">
+            @if(session('status'))
+            <div class="alert alert-success">
+                {{session('status')}}
+            </div>
+            @endif
+            <form method="POSt" action="{{route('password.email')}}">
                 @csrf
                 <div class="mb-3">
-                  <label for="exampleInputEmail1" class="form-label">Email address</label>
+                  <label for="exampleInputEmail1" class="form-label">Your Email Address</label>
                   <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email" required>
                   @if($errors->has('email'))
-                  <small class="text-danger">Email Atau Password Salah</small>
+                  <small class="text-danger">{{$errors->first('email')}}</small>
                   @endif
                 </div>
-                <div class="mb-3">
-                  <label for="exampleInputPassword1" class="form-label">Password</label>
-                  <input type="password" class="form-control" id="exampleInputPassword1" name="password" required>
-                </div>
                 <div class="text-center">
-                <button type="submit" class="btn btn-primary">Login</button>
-                <br>
-                <br>
+                <button type="submit" class="btn btn-primary">Send Reset Link</button>
                 </div>
-                <a href="{{route('password.request')}}" style="font-size: 13px">Forgot Password?</a>
             </form>
         </div>
     </div>

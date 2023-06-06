@@ -17,11 +17,18 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+     public function __construct(){
+        $this->middleware('auth');
+        $this->middleware('isAdmin');
+        $this->middleware('verified');
+     }
+
     public function index()
     {
-        if(!Auth::check()) {
-            return redirect ('login');
-        }
+        // if(!Auth::check()) {
+        //     return redirect ('login');
+        // }
 
         $posts = Post::get();
         $postingan = $posts -> count();

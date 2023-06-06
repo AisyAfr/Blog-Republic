@@ -6,6 +6,7 @@ use App\Http\Controllers\MakanController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CommentController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,8 +20,8 @@ use App\Http\Controllers\CommentController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+return view('index');
+})->middleware(['auth','verified']);
 
 // Route::get('hello', [HelloController::class, 'index']);
 // Route::get('hello', 'App\Http\Controllers\HelloController@world_message');
@@ -29,11 +30,11 @@ Route::get('/', function () {
 
 //AUTH
 
-Route::get('register',[AuthController::class, 'register_form']);
-Route::post('register',[AuthController::class, 'register']);
-Route::get('login',[AuthController::class, 'login']);
-Route::post('login',[AuthController::class, 'authenticate']);
-Route::get('logout', [AuthController::class, 'logout']);
+// Route::get('register',[AuthController::class, 'register_form'])->name('register');
+// Route::post('register',[AuthController::class, 'register']);
+// Route::get('login',[AuthController::class, 'login']);
+// Route::post('login',[AuthController::class, 'authenticate']);
+// Route::get('logout', [AuthController::class, 'logout']);
 
 
 //CONTENT

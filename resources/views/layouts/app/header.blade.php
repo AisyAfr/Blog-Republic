@@ -16,9 +16,9 @@
       </form>
   
       <div class="text-end mt-3 mx-3">
-        @if(!Auth::check())
-        <a href="{{url("login")}}" type="button" class="btn btn-primary me-2" style="border-radius:0%">Login</a>
-        <a href="{{url('register')}}" type="button" class="btn btn-warning" style="border-radius:0%">Register</a>
+        @guest
+        <a href="{{route("login")}}" type="button" class="btn btn-primary me-2" style="border-radius:0%">Login</a>
+        <a href="{{route('register')}}" type="button" class="btn btn-warning" style="border-radius:0%">Register</a>
         @else
 
         <div class="dropdown">
@@ -28,11 +28,13 @@
           </a>
         
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="{{url('logout')}}">Log Out</a></li>
+            <li><a class="dropdown-item" href="{{route('logout')}}" onclick="event.preventDefault(); document.getElementById('form-logout').submit();">Log Out</a></li>
+
+            <form action="{{route('logout')}}" method="post" id="form-logout">@csrf</form>
           </ul>
         </div>
 
-        @endif
+        @endguest
       </div>
     </div>
     </header>
